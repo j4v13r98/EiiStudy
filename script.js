@@ -182,6 +182,10 @@ async function renderSubject(pathParts) {
 function route() {
   const raw = decodeURIComponent(window.location.hash.replace(/^#\/?/, ""));
   const parts = raw.split("/").filter(Boolean);
+  const logo = document.getElementById("logo");
+  if (logo) {
+    logo.style.display = parts.length === 0 ? "inline-block" : "none";
+  }
 
   renderBreadcrumb(parts);
 
