@@ -2,7 +2,7 @@
 
 Web gratuita para consultar y descargar apuntes y ejercicios universitarios, organizados por curso, semestre y asignatura.
 
-🔗 **WEB:** [`https://j4v13r98.github.io/EiiStudy/`](https://github.com/j4v13r98/EiiStudy-Storage)
+🔗 **WEB:** [`https://j4v13r98.github.io/EiiStudy/`](https://j4v13r98.github.io/EiiStudy/#/)
 
 ---
 
