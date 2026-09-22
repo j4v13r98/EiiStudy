@@ -26,7 +26,8 @@ async function fetchContents(path = "") {
 }
 
 function buildFileList(items) {
-  const files = items.filter((i) => i.type === "file" && i.name !== ".gitkeep");
+  const EXCLUDED_FILES = [".gitkeep", "README.md"]
+  const files = items.filter((i) => i.type === "file" && !EXCLUDED_FILES.includes(i.name));
   if (files.length === 0) return null;
 
   const ul = document.createElement("ul");
