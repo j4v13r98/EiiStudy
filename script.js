@@ -8,6 +8,7 @@ const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${CONTENT_REPO}/co
 const content = document.getElementById("content");
 const pageTitle = document.getElementById("page-title");
 const breadcrumb = document.getElementById("breadcrumb");
+const EXCLUDED_FILES = [".gitkeep", "README.md"];
 
 // Devuelve un icono según el tipo de archivo
 function iconFor(name) {
@@ -26,7 +27,6 @@ async function fetchContents(path = "") {
 }
 
 function buildFileList(items) {
-  const EXCLUDED_FILES = [".gitkeep", "README.md"]
   const files = items.filter((i) => i.type === "file" && !EXCLUDED_FILES.includes(i.name));
   if (files.length === 0) return null;
 
@@ -99,7 +99,7 @@ async function renderFolderGrid(path, linkBase) {
   try {
     const items = await fetchContents(path);
     const dirs = items.filter((i) => i.type === "dir");
-    const rootFiles = items.filter((i) => i.type === "file" && i.name !== ".gitkeep");
+    const rootFiles = items.filter((i) => i.type === "file" && !EXCLUDED_FILES.includes(i.name));
 
     content.innerHTML = "";
 
@@ -147,7 +147,7 @@ async function renderSubject(pathParts) {
     content.innerHTML = "";
 
     const subfolders = items.filter((i) => i.type === "dir");
-    const looseFiles = items.filter((i) => i.type === "file" && i.name !== ".gitkeep");
+    const looseFiles = items.filter((i) => i.type === "file" && !EXCLUDED_FILES.includes(i.name));
 
     if (subfolders.length === 0 && looseFiles.length === 0) {
       content.appendChild(emptyMsg("Esta asignatura todavía no tiene contenido."));
